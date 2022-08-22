@@ -25,18 +25,38 @@ class _NoteState extends State<Note> {
           constraints: const BoxConstraints(
             minHeight: 130,
           ),
-          child: Text(
-            maxLines: 9,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.left,
-              'Recent a da dsa jsadkbfkjdsbfkadbfkdsbfkbdakbkbfkbk'
-                  'ndkjsandkaadklsamdlsmdsadsndkdnaskdna'
-                  'snkjasnfkasmdksamdlkmslkdmaslmdalksmdaklsmdlkmslmdalskmdlasmdsaskjnfaksnnknsafknsajkfnask',
-              style: GoogleFonts.nunito(
-                fontWeight: FontWeight.w700,
-                color: Color(appBarTextCOLOR),
-                fontSize: 14,),
+          child: Stack(
+            children: [
+              Text(
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                'Cerebral palsy sport',
+                style: GoogleFonts.nunito(
+                  fontWeight: FontWeight.w900,
+                  color: Color(appBarTextCOLOR),
+                  fontSize: 14,),
           ),
+
+
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 42, 0, 0),
+                child: Text(
+                  'Cerebral palsy sport classification is a classification '
+                      'system used by sports that include people with cerebral'
+                      ' palsy (CP) with different degrees of severity to compete '
+                      'fairly against each...',
+                maxLines: 9,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w700,
+                    color: Color(appBarTextCOLOR),
+                    fontSize: 14,),
+            ),
+              ),
+          ]),
       ),
     ));
   }
