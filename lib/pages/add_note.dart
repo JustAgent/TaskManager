@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/constants/colors.dart';
+import 'package:task_manager/model/local_storage.dart';
+import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
 
 class AddNote extends StatefulWidget {
@@ -11,14 +14,19 @@ class AddNote extends StatefulWidget {
 
 class _AddNoteState extends State<AddNote> {
 
-  int bgMain = 0xffF8EEE2;
-  int noteMain = 0xffFFFDFA;
-  int appBarTextCOLOR = 0XFF403B36;
-  int whiteColor = 0xff000000;
-  int enterNameColor = 0xff403B36;
-  int writeSomethingColor = 0xff595550;
-  var w900 = FontWeight.w900;
-  var w700 = FontWeight.w700;
+  String title = '';
+  String desc = '';
+
+  @override
+  void dispose() {
+    super.dispose();
+    products.add(Product(title: title, desc: desc));
+    print(products[3].title);
+  }
+
+  void addNote() {
+    print(products);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +68,9 @@ class _AddNoteState extends State<AddNote> {
           child: Column(
             children: [
               TextField(
+                onChanged: (text) {
+                  title = text;
+                },
                 maxLength: 30,
                 maxLines: 2,
                 decoration: InputDecoration(
@@ -80,6 +91,13 @@ class _AddNoteState extends State<AddNote> {
               ),
               Expanded(
                 child: TextField(
+                onChanged: (text) {
+                  desc = text;
+                  if ( title != '' && desc != '') {
+                    print(title);
+                    print(desc);
+                  }
+                },
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: InputDecoration(

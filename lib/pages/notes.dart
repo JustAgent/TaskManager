@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/constants/colors.dart';
+import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/pages/single_note.dart';
 
 class Notes extends StatefulWidget {
@@ -13,21 +15,8 @@ class Notes extends StatefulWidget {
 
 class _NotesState extends State<Notes> {
 
-  int bgMain = 0xffF8EEE2;
-  int btnBgMain = 0xffD9614C;
-  int noteMain = 0xffFFFDFA;
-  int appBarTextCOLOR = 0XFF403B36;
-  int whiteColor = 0xff000000;
-  var btnGradient = <Color>[
-  Color(0xff1f005c),
-  Color(0xff5b0060),
-  Color(0xff870160),
-  Color(0xffac255e),
-  Color(0xffca485c),
-  Color(0xffe16b5c),
-  Color(0xfff39060),
-  Color(0xffffb56b),
-  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Container(

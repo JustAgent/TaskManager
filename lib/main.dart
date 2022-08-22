@@ -5,6 +5,7 @@ import 'package:task_manager/pages/single_note.dart';
 
 void main() => runApp(MaterialApp(
   initialRoute: '/',
+  debugShowCheckedModeBanner: false,
   routes: {
     '/': (context) =>  Notes(),
     '/addNote': (context) =>  AddNote(),
