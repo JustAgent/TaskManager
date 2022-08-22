@@ -20,26 +20,24 @@ class _NoteState extends State<Note> {
         ),
         padding: const EdgeInsets.all(16),
         width: 160,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-                textAlign: TextAlign.left,
-                'Cerebral palassd s',
-                style: GoogleFonts.nunito(
-                  fontWeight: FontWeight.w900,
-                  color: Color(appBarTextCOLOR),
-                  fontSize: 16,)),
-            Text(
-              textAlign: TextAlign.left,
-                'Recent Notadskmslkadmklasmdklasmdklasmkdamskdlmsalkmdklasmdklasmdlkamdlklsamdlksamdlkasmdlsamksamdlkasmdlkasmdlmslmksdmaksmdkasmdss',
-                style: GoogleFonts.nunito(
-                  fontWeight: FontWeight.w700,
-                  color: Color(appBarTextCOLOR),
-                  fontSize: 14,))
-          ],
-        ),
+        child: ConstrainedBox(
+          //color: Colors.red,
+          constraints: const BoxConstraints(
+            minHeight: 130,
+          ),
+          child: Text(
+            maxLines: 9,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.left,
+              'Recent a da dsa jsadkbfkjdsbfkadbfkdsbfkbdakbkbfkbk'
+                  'ndkjsandkaadklsamdlsmdsadsndkdnaskdna'
+                  'snkjasnfkasmdksamdlkmslkdmaslmdalksmdaklsmdlkmslmdalskmdlasmdsaskjnfaksnnknsafknsajkfnask',
+              style: GoogleFonts.nunito(
+                fontWeight: FontWeight.w700,
+                color: Color(appBarTextCOLOR),
+                fontSize: 14,),
+          ),
       ),
-    );
+    ));
   }
 }
