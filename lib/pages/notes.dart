@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
@@ -69,7 +69,17 @@ class _NotesState extends State<Notes> {
         ),
         backgroundColor: Color(bgMain),
         body: Center(
-          child: Note(),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(38, 0, 38, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Note(),
+                  const Spacer(flex: 12,),
+                  Note(),
+                ]
+            ),
+          ),
         ),
       ),
     );

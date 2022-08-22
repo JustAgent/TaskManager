@@ -20,7 +20,9 @@ class _AddNoteState extends State<AddNote> {
   @override
   void dispose() {
     super.dispose();
-    products.add(Product(title: title, desc: desc));
+    if (title != '' && desc != '') {
+      products.add(Product(title: title, desc: desc));
+    }
     print(products[3].title);
   }
 
@@ -93,10 +95,6 @@ class _AddNoteState extends State<AddNote> {
                 child: TextField(
                 onChanged: (text) {
                   desc = text;
-                  if ( title != '' && desc != '') {
-                    print(title);
-                    print(desc);
-                  }
                 },
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
