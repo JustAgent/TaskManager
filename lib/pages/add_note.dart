@@ -17,15 +17,12 @@ class _AddNoteState extends State<AddNote> {
   String title = '';
   String desc = '';
 
-  @override
-  void dispose() {
-    super.dispose();
+  void close() {
     if (title != '') {
-      products.add(Product(title: title, desc: desc, color: noteBlue, id: 2));
+      products.add(Product(title: title, desc: desc, color: noteBlue, id: 5));
     }
-
+    Navigator.pushReplacementNamed(context, '/');
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +46,7 @@ class _AddNoteState extends State<AddNote> {
                 color: Color(appBarTextCOLOR),
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/');
+                close();
               },
             ),
             title: Text(

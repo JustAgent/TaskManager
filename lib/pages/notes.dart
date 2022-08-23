@@ -80,9 +80,9 @@ class _NotesState extends State<Notes> {
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 8,
                 itemCount: products.length + 1,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (BuildContext context1, int index) {
                   if (index < products.length) {
-                    return Note(context, products[index]);
+                    return Note(context, products[index], index);
                   }
                   return const SizedBox(
                     height: 50,

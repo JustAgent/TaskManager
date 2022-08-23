@@ -6,24 +6,27 @@ import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
 
 class EditNote extends StatefulWidget {
-  const EditNote({Key? key}) : super(key: key);
-
+  const EditNote(this.id, this.oldTitle, this.oldDesc, {Key? key}) : super(key: key);
+  final int id;
+  final String oldTitle;
+  final String oldDesc;
   @override
   State<EditNote> createState() => _EditNoteState();
 }
 
 class _EditNoteState extends State<EditNote> {
 
+
   String title = '';
   String desc = '';
 
-  @override
-  void dispose() {
-    super.dispose();
+  void close() {
     if (title != '') {
-      products.add(Product(title: title, desc: desc, color: noteBlue, id: 2));
+      products[widget.id].title = title;
+      products[widget.id].desc = desc;
+      Navigator.pushReplacementNamed(context, '/');
     }
-
+    //Navigator.pushReplacementNamed(context, '/');
   }
 
 
@@ -49,11 +52,11 @@ class _EditNoteState extends State<EditNote> {
                 color: Color(appBarTextCOLOR),
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/');
+                close();
               },
             ),
             title: Text(
-              'Add Note',
+              'Edit Note',
               style: GoogleFonts.nunito(
                 fontWeight: FontWeight.w900,
                 color: Color(appBarTextCOLOR),
@@ -66,15 +69,16 @@ class _EditNoteState extends State<EditNote> {
             padding: EdgeInsets.all(15),
             child: Column(
               children: [
-                TextField(
+                TextFormField(
                   onChanged: (text) {
                     title = text;
                   },
                   maxLength: 30,
                   maxLines: 2,
+                  initialValue: widget.oldTitle,
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter name...',
+                      //hintText: widget.oldTitle,
                       counterText: '',
                       hintStyle: GoogleFonts.nunito(
                         color: Color(enterNameColor),
@@ -89,10 +93,11 @@ class _EditNoteState extends State<EditNote> {
                   ),
                 ),
                 Expanded(
-                    child: TextField(
+                    child: TextFormField(
                       onChanged: (text) {
                         desc = text;
                       },
+                      initialValue: widget.oldDesc,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: InputDecoration(
@@ -118,7 +123,7 @@ class _EditNoteState extends State<EditNote> {
   }
 }
 //TODO
-//CLASS = NOTE
-// id title text smth
-// create class
-// add him to list
+//VALUES FROM MAIN > CONStructor
+//разобраться с передачей данных
+//придумать как работать с айди
+//поменять текст на старый
