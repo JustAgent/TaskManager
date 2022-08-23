@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 int bgMain = 0xffF8EEE2;
 int btnBgMain = 0xffD9614C;
 int noteMain = 0xffFFFDFA;
+int noteRed = 0xfff0b3aa;
+int noteBlue = 0xffc2bff5;
+int noteGreen = 0xffb9f2aa;
+int noteYellow = 0xfff7d79e;
 int appBarTextCOLOR = 0XFF403B36;
 int whiteColor = 0xff000000;
 var btnGradient = <Color>[

@@ -5,14 +5,14 @@ import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
 
-class AddNote extends StatefulWidget {
-  const AddNote({Key? key}) : super(key: key);
+class EditNote extends StatefulWidget {
+  const EditNote({Key? key}) : super(key: key);
 
   @override
-  State<AddNote> createState() => _AddNoteState();
+  State<EditNote> createState() => _EditNoteState();
 }
 
-class _AddNoteState extends State<AddNote> {
+class _EditNoteState extends State<EditNote> {
 
   String title = '';
   String desc = '';

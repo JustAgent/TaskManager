@@ -15,15 +15,6 @@ class Notes extends StatefulWidget {
 
 class _NotesState extends State<Notes> {
 
-  late ScrollController _scrollController;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _scrollController = new ScrollController(initialScrollOffset: 5.0)
-  //     ..addListener(_scrollListener);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +44,8 @@ class _NotesState extends State<Notes> {
         actions: [
           IconButton(onPressed: () {},
               icon: Icon(
-                  Icons.search_outlined,
-                  color: Color(appBarTextCOLOR),
+                Icons.search_outlined,
+                color: Color(appBarTextCOLOR),
               )
           )
         ],
@@ -76,34 +67,31 @@ class _NotesState extends State<Notes> {
       ),
       backgroundColor: Color(bgMain),
       body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minHeight: 400,
-          ),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
-            child: MasonryGridView.count(
-              physics: const AlwaysScrollableScrollPhysics(),
-              //controller: _scrollController,
-              crossAxisCount: 2,
-              scrollDirection: Axis.vertical,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 8,
-              itemBuilder: (BuildContext context, int index) {
-                if (index < products.length) {
-                    return Note(() {}, products[index]);
-                }
-                return const Padding(padding: EdgeInsets.all(0));
-
-              },
-                // products.map((product) => Note(() {} , product)).toList();
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minHeight: 400,
             ),
-          ),
-        )
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
+              child: MasonryGridView.count(
+                physics: const AlwaysScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                scrollDirection: Axis.vertical,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 8,
+                itemCount: products.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index < products.length) {
+                    return Note(context, products[index]);
+                  }
+                  return const SizedBox(
+                    height: 50,
+                  );
+                },
+              ),
+            ),
+          )
       ),
     );
   }
 }
-//TODO
-//CONNECT TO MY LIST
-// CHECK IF SIZE LOOKS GOOD
