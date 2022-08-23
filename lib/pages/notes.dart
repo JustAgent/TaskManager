@@ -69,19 +69,23 @@ class _NotesState extends State<Notes> {
         ),
         backgroundColor: Color(bgMain),
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(38, 0, 38, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Note(),
-                  const Spacer(flex: 12,),
-                  Note(),
-                ]
+          child: Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
+              child: StaggeredGrid.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 8,
+                children:
+                  products.map((product) => Note(() {} , product)).toList(),
+              ),
             ),
-          ),
+          )
         ),
       ),
     );
   }
 }
+//TODO
+//CONNECT TO MY LIST
+// CHECK IF SIZE LOOKS GOOD
