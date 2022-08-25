@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,25 +14,43 @@ class Notes extends StatefulWidget {
 
 class _NotesState extends State<Notes> {
 
+  bool isVisible = true;
+
+  @override
+  void initState() {
+  checkVisibility();
+  super.initState();
+  }
+
+  void checkVisibility() {
+    setState(() {
+      if (products.isNotEmpty) {
+        isVisible = true;
+      }
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.red,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, '/addNote');
-        },
-        elevation: 20,
-        child: Container(
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(begin: Alignment.bottomRight,end: Alignment.topLeft, colors: btnGradient),
-          ),
-          child: Icon(
-            Icons.add_outlined,
-            size: 30,
+      floatingActionButton: Visibility(
+        //visible: isVisible,
+        child: FloatingActionButton(
+          onPressed: () {
+             Navigator.pushReplacementNamed(context, '/addNote');
+          },
+          elevation: 20,
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(begin: Alignment.bottomRight,end: Alignment.topLeft, colors: btnGradient),
+            ),
+            child: const Icon(
+              Icons.add_outlined,
+              size: 30,
+            ),
           ),
         ),
       ),
@@ -57,7 +74,7 @@ class _NotesState extends State<Notes> {
           onPressed: () {  },
         ),
         title: Text(
-          'Recent Notes',
+          'All Notes',
           style: GoogleFonts.nunito(
             fontWeight: FontWeight.w900,
             color: Color(appBarTextCOLOR),
@@ -66,7 +83,8 @@ class _NotesState extends State<Notes> {
         ),
       ),
       backgroundColor: Color(bgMain),
-      body: Center(
+      body: isVisible
+      ? Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: 400,
@@ -90,8 +108,21 @@ class _NotesState extends State<Notes> {
                 },
               ),
             ),
-          )
-      ),
+          ),
+      )
+      : Center(
+        child: Column(
+          children: const [
+            Image(
+                image: AssetImage(
+                  'assets/create.png'
+                ))
+          ],
+        ),
+    ),
     );
   }
+}
+void visibility() {
+
 }
