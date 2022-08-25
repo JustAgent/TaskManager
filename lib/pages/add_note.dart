@@ -58,14 +58,14 @@ class _AddNoteState extends State<AddNote> {
             IconButton(onPressed: () {},
                 icon: Icon(
                   Icons.more_vert,
-                  color: Color(appBarTextCOLOR),
+                  color: Color(appBarTextColor),
                 )
             )
           ],
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Color(appBarTextCOLOR),
+              color: Color(appBarTextColor),
             ),
             onPressed: () {
               close();
@@ -75,7 +75,7 @@ class _AddNoteState extends State<AddNote> {
             'Add Note',
             style: GoogleFonts.nunito(
               fontWeight: FontWeight.w900,
-              color: Color(appBarTextCOLOR),
+              color: Color(appBarTextColor),
               fontSize: 14,
             ),
           ),

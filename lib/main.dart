@@ -6,7 +6,7 @@ import 'package:task_manager/pages/sign_up_page.dart';
 import 'package:task_manager/pages/single_note.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/',
+  initialRoute: '/signup',
   debugShowCheckedModeBanner: false,
   routes: {
     '/signup': (context) => SignUp(),

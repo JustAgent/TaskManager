@@ -26,7 +26,7 @@ import 'package:task_manager/pages/edit_note.dart';
             ),
             contentTextStyle: GoogleFonts.nunito(
               fontWeight: FontWeight.w900,
-              color: Color(appBarTextCOLOR),
+              color: Color(appBarTextColor),
               fontSize: 18,
               letterSpacing: 1.5,
             backgroundColor: Color(noteMain),
@@ -75,7 +75,7 @@ import 'package:task_manager/pages/edit_note.dart';
                     textAlign: TextAlign.left,
                     style: GoogleFonts.nunito(
                       fontWeight: FontWeight.w900,
-                      color: Color(appBarTextCOLOR),
+                      color: Color(appBarTextColor),
                       fontSize: 16,),
                   ),
                   Padding(
@@ -87,7 +87,7 @@ import 'package:task_manager/pages/edit_note.dart';
                       textAlign: TextAlign.left,
                       style: GoogleFonts.nunito(
                         fontWeight: FontWeight.w700,
-                        color: Color(appBarTextCOLOR),
+                        color: Color(appBarTextColor),
                         fontSize: 14,),
                     ),
                   ),

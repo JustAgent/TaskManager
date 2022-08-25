@@ -67,14 +67,14 @@ class _NotesState extends State<Notes> {
           IconButton(onPressed: () {},
               icon: Icon(
                 Icons.search_outlined,
-                color: Color(appBarTextCOLOR),
+                color: Color(appBarTextColor),
               )
           )
         ],
         leading: IconButton(
           icon: Icon(
             Icons.menu,
-            color: Color(appBarTextCOLOR),
+            color: Color(appBarTextColor),
           ),
           onPressed: () {  },
         ),
@@ -82,7 +82,7 @@ class _NotesState extends State<Notes> {
           'All Notes',
           style: GoogleFonts.nunito(
             fontWeight: FontWeight.w900,
-            color: Color(appBarTextCOLOR),
+            color: Color(appBarTextColor),
             fontSize: 14,
           ),
         ),
@@ -134,7 +134,7 @@ class _NotesState extends State<Notes> {
                   'Create Your First Note',
                     style: GoogleFonts.nunito(
                       fontWeight: FontWeight.w900,
-                      color: Color(appBarTextCOLOR),
+                      color: Color(appBarTextColor),
                       fontSize: 24)
                 ),
               ),
@@ -146,7 +146,7 @@ class _NotesState extends State<Notes> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.nunito(
                         fontWeight: FontWeight.w700,
-                        color: Color(appBarTextCOLOR),
+                        color: Color(appBarTextColor),
                         fontSize: 16)
                 ),
               ),
@@ -168,7 +168,7 @@ class _NotesState extends State<Notes> {
                       'Create A Note',
                         style: GoogleFonts.nunito(
                             fontWeight: FontWeight.w900,
-                            color: Color(btnCOlor),
+                            color: Color(btnColor),
                             fontSize: 20)
                     ),
                   ),
@@ -179,7 +179,4 @@ class _NotesState extends State<Notes> {
       ),
     );
   }
-}
-void visibility() {
-
 }
