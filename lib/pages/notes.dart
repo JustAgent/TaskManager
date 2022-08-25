@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/pages/single_note.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class Notes extends StatefulWidget {
 
 class _NotesState extends State<Notes> {
 
-  bool isVisible = true;
+  bool isVisible = false;
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _NotesState extends State<Notes> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Visibility(
-        //visible: isVisible,
+        visible: isVisible,
         child: FloatingActionButton(
           onPressed: () {
              Navigator.pushReplacementNamed(context, '/addNote');
@@ -84,42 +85,93 @@ class _NotesState extends State<Notes> {
       ),
       backgroundColor: Color(bgMain),
       body: isVisible
-      ? Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: 400,
-            ),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
-              child: MasonryGridView.count(
-                physics: const AlwaysScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                scrollDirection: Axis.vertical,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 8,
-                itemCount: products.length + 1,
-                itemBuilder: (BuildContext context1, int index) {
-                  if (index < products.length) {
-                    return Note(context, products[index], index);
-                  }
-                  return const SizedBox(
-                    height: 50,
-                  );
-                },
+      ? Padding(
+        padding: EdgeInsets.fromLTRB(0, 29, 0, 0),
+        child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: 400,
+              ),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
+                child: MasonryGridView.count(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  scrollDirection: Axis.vertical,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 8,
+                  itemCount: products.length + 1,
+                  itemBuilder: (BuildContext context1, int index) {
+                    if (index < products.length) {
+                      return Note(context, products[index], index);
+                    }
+                    return const SizedBox(
+                      height: 50,
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-      )
-      : Center(
-        child: Column(
-          children: const [
-            Image(
-                image: AssetImage(
-                  'assets/create.png'
-                ))
-          ],
         ),
-    ),
+      )
+      : Padding(
+        padding: /**/const EdgeInsets.fromLTRB(31, 70, 31, 0),
+        child: Center(
+          child: Column(
+            children: [
+              const Image(
+                  image: AssetImage(
+                    'assets/create.png'
+                  )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(
+                  'Create Your First Note',
+                    style: GoogleFonts.nunito(
+                      fontWeight: FontWeight.w900,
+                      color: Color(appBarTextCOLOR),
+                      fontSize: 24)
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(
+                    'Add a note about anything (your thoughts on climate change, or your history essay) and share it witht the world.',
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.nunito(
+                        fontWeight: FontWeight.w700,
+                        color: Color(appBarTextCOLOR),
+                        fontSize: 16)
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/addNote');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(btnBgMain),
+                      padding: EdgeInsets.symmetric(horizontal: 96, vertical: 26),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
+                      )
+                    ),
+                    child: Text(
+                      'Create A Note',
+                        style: GoogleFonts.nunito(
+                            fontWeight: FontWeight.w900,
+                            color: Color(btnCOlor),
+                            fontSize: 20)
+                    ),
+                  ),
+              ),
+            ],
+          ),
+         ),
+      ),
     );
   }
 }

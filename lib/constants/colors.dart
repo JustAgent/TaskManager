@@ -10,6 +10,7 @@ int noteGreen = 0xffb9f2aa;
 int noteYellow = 0xfff7d79e;
 int appBarTextCOLOR = 0XFF403B36;
 int whiteColor = 0xff000000;
+int btnCOlor = 0xffFFFBFA;
 var btnGradient = <Color>[
   Color(0xff1f005c),
   Color(0xff5b0060),
