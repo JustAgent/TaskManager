@@ -5,8 +5,7 @@ import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/edit_note.dart';
 
-  Widget Note(context, product, index) {
-
+  Widget note(context, product, index, callback) {
     void deleteNote() {
       products.removeWhere((element) => element.id == product.id);
     }
@@ -18,7 +17,9 @@ import 'package:task_manager/pages/edit_note.dart';
           content: GestureDetector(
               onTap: () {
                 deleteNote();
-                Navigator.of(context).pushReplacementNamed('/');
+                callback();
+                Navigator.pop(context);
+                // Navigator.of(context).pushReplacementNamed('/');
               },
               child: const Text('Delete')),
             shape: const RoundedRectangleBorder(
@@ -38,7 +39,7 @@ import 'package:task_manager/pages/edit_note.dart';
     return InkWell(
       onTap: () async {
          Navigator.of(context).push(MaterialPageRoute(builder:
-             (context) => EditNote(index, product.title, product.desc)));
+             (context) => EditNote(index, product.title, product.desc, callback)));
         // Navigator.pushReplacementNamed(context, '/editNote', arguments: {index, product.title, product.desc} );
          },
       onLongPress: () => showDeleteDialog(),

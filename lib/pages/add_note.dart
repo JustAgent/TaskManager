@@ -8,7 +8,8 @@ import 'dart:math';
 
 
 class AddNote extends StatefulWidget {
-  const AddNote({Key? key}) : super(key: key);
+  const AddNote(this.callbackFunc, {Key? key}) : super(key: key);
+  final Function callbackFunc;
 
   @override
   State<AddNote> createState() => _AddNoteState();
@@ -23,9 +24,9 @@ class _AddNoteState extends State<AddNote> {
     if (title != '') {
       var tempId = UniqueKey();
       products.add(Product(title: title, desc: desc, color: noteBlue, id: tempId));
-
+      widget.callbackFunc();
+      Navigator.pop(context);
     }
-    Navigator.pushReplacementNamed(context, '/');
   }
 
   @override

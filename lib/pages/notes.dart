@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:task_manager/model/local_storage.dart';
+import 'package:task_manager/pages/add_note.dart';
 import 'package:task_manager/pages/single_note.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +11,6 @@ import '../model/model.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
-
   @override
   State<Notes> createState() => _NotesState();
 }
@@ -18,24 +18,19 @@ class Notes extends StatefulWidget {
 class _NotesState extends State<Notes> {
 
   bool isVisible = false;
-  late List<Product> temp;
-  @override
-  void initState() {
-  checkVisibility();
-  setState(() {
-    temp = products;
-  });
-  super.initState();
-  }
+  late int localProducts;
 
-  void checkVisibility() {
+
+  callback() {
     setState(() {
+      localProducts = 0;
       if (products.isNotEmpty) {
         isVisible = true;
       }
     });
-
   }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +38,8 @@ class _NotesState extends State<Notes> {
         visible: isVisible,
         child: FloatingActionButton(
           onPressed: () {
-             Navigator.pushReplacementNamed(context, '/addNote');
+            Navigator.of(context).push(MaterialPageRoute(builder:
+                (context) => AddNote(callback)));
           },
           elevation: 20,
           child: Container(
@@ -98,7 +94,7 @@ class _NotesState extends State<Notes> {
                 minHeight: 400,
               ),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
+                padding: const EdgeInsets.fromLTRB(22, 0, 22, 0),
                 child: MasonryGridView.count(
                   physics: const AlwaysScrollableScrollPhysics(),
                   crossAxisCount: 2,
@@ -108,7 +104,7 @@ class _NotesState extends State<Notes> {
                   itemCount: products.length + 1,
                   itemBuilder: (BuildContext context1, int index) {
                     if (index < products.length) {
-                      return Note(context, products[index], index);
+                      return note(context, products[index], index, callback);
                     }
                     return const SizedBox(
                       height: 50,
@@ -152,10 +148,11 @@ class _NotesState extends State<Notes> {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/addNote');
+                      Navigator.of(context).push(MaterialPageRoute(builder:
+                          (context) => AddNote(callback)));
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(btnBgMain),
@@ -173,6 +170,7 @@ class _NotesState extends State<Notes> {
                     ),
                   ),
               ),
+
             ],
           ),
          ),

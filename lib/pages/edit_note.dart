@@ -6,10 +6,11 @@ import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
 
 class EditNote extends StatefulWidget {
-  const EditNote(this.id, this.oldTitle, this.oldDesc, {Key? key}) : super(key: key);
+  const EditNote(this.id, this.oldTitle, this.oldDesc, this.callbackFunc, {Key? key}) : super(key: key);
   final int id;
   final String oldTitle;
   final String oldDesc;
+  final Function callbackFunc;
   @override
   State<EditNote> createState() => _EditNoteState();
 }
@@ -30,7 +31,9 @@ class _EditNoteState extends State<EditNote> {
     if (title != '') {
       products[widget.id].title = title;
       products[widget.id].desc = desc;
-      Navigator.pushReplacementNamed(context, '/');
+      widget.callbackFunc();
+      Navigator.pop(context);
+      // Navigator.pushReplacementNamed(context, '/');
     }
   }
 

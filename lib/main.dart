@@ -11,7 +11,7 @@ void main() => runApp(MaterialApp(
   routes: {
     '/signup': (context) => SignUp(),
     '/': (context) =>  Notes(),
-    '/addNote': (context) =>  AddNote(),
+    //'/addNote': (context) =>  AddNote(),
     //'/editNote': (context) =>  EditNote(1,'213','2132'),
   },
 ));
