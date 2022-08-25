@@ -19,7 +19,6 @@ import 'package:task_manager/pages/edit_note.dart';
                 deleteNote();
                 callback();
                 Navigator.pop(context);
-                // Navigator.of(context).pushReplacementNamed('/');
               },
               child: const Text('Delete')),
             shape: const RoundedRectangleBorder(

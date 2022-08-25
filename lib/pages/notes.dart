@@ -27,6 +27,9 @@ class _NotesState extends State<Notes> {
       if (products.isNotEmpty) {
         isVisible = true;
       }
+      else {
+        isVisible = false;
+      }
     });
   }
   
@@ -170,7 +173,6 @@ class _NotesState extends State<Notes> {
                     ),
                   ),
               ),
-
             ],
           ),
          ),
