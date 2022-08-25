@@ -159,13 +159,14 @@ class _NotesState extends State<Notes> {
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(btnBgMain),
-                      padding: const EdgeInsets.symmetric(horizontal: 96, vertical: 26),
+                      padding: const EdgeInsets.symmetric(horizontal: 86, vertical: 26),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)
                       )
                     ),
                     child: Text(
                       'Create A Note',
+                        maxLines: 1,
                         style: GoogleFonts.nunito(
                             fontWeight: FontWeight.w900,
                             color: Color(btnColor),

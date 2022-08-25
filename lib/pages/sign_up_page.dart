@@ -14,6 +14,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,
         backgroundColor: Color(bgMain),
@@ -71,9 +72,11 @@ class _SignUpState extends State<SignUp> {
                         )
                     ),
                     TextFieldContainer(
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
+                        child: Stack(
+                          children: [
+                            TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Password',
                               hintStyle: GoogleFonts.nunito(
@@ -81,6 +84,14 @@ class _SignUpState extends State<SignUp> {
                                 fontWeight:  FontWeight.w700,
                               )
                           ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(260, 12, 12, 0),
+                              child: const Icon(
+                                Icons.remove_red_eye,
+                              ),
+                            )
+                          ]
                         )
                     ),
                     TextFieldContainer(
@@ -163,3 +174,10 @@ class TextFieldContainer extends StatelessWidget {
     );
   }
 }
+//TODO
+//FIX EYE POSITION ON DIF DEVICES
+//MAKE EYE LOGIC
+//LOGIN AND FIREBASE USAGE
+//CHANGE LOCAL STORAGE TO FIREBASE
+//CELEBRATE
+
