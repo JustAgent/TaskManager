@@ -8,7 +8,7 @@ import 'package:task_manager/pages/edit_note.dart';
   Widget Note(context, product, index) {
 
     void deleteNote() {
-      products.removeWhere((element) => element.id == index);
+      products.removeWhere((element) => element.id == product.id);
     }
     
     Future<bool> showDeleteDialog() async {

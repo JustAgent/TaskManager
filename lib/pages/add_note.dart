@@ -4,6 +4,8 @@ import 'package:task_manager/constants/colors.dart';
 import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
+import 'dart:math';
+
 
 class AddNote extends StatefulWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -19,7 +21,9 @@ class _AddNoteState extends State<AddNote> {
 
   void close() {
     if (title != '') {
-      products.add(Product(title: title, desc: desc, color: noteBlue, id: 5));
+      int tempId = Random().nextInt(100000000);
+      products.add(Product(title: title, desc: desc, color: noteBlue, id: tempId));
+
     }
     Navigator.pushReplacementNamed(context, '/');
   }
