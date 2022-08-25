@@ -9,7 +9,9 @@ import 'package:task_manager/pages/edit_note.dart';
 
     return InkWell(
       onTap: () async {
-         Navigator.pushReplacementNamed(context, '/editNote', arguments: {index, product.title, product.desc} );
+         Navigator.of(context).push(MaterialPageRoute(builder:
+             (context) => EditNote(index, product.title, product.desc)));
+        // Navigator.pushReplacementNamed(context, '/editNote', arguments: {index, product.title, product.desc} );
          },
 
         child: Container(

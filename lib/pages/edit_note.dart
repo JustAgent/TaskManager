@@ -15,10 +15,16 @@ class EditNote extends StatefulWidget {
 }
 
 class _EditNoteState extends State<EditNote> {
-
-
+  
   String title = '';
   String desc = '';
+
+  @override
+  void initState() {
+    title = widget.oldTitle;
+    desc = widget.oldDesc;
+    super.initState();
+  }
 
   void close() {
     if (title != '') {
@@ -32,6 +38,7 @@ class _EditNoteState extends State<EditNote> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.oldTitle);
     return Container(
       child: Scaffold(
           appBar: AppBar(

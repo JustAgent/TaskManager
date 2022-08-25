@@ -10,6 +10,6 @@ void main() => runApp(MaterialApp(
   routes: {
     '/': (context) =>  Notes(),
     '/addNote': (context) =>  AddNote(),
-    '/editNote': (context) =>  EditNote(1,'213','2132'),
+    //'/editNote': (context) =>  EditNote(1,'213','2132'),
   },
 ));
