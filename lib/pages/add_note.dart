@@ -21,7 +21,7 @@ class _AddNoteState extends State<AddNote> {
 
   void close() {
     if (title != '') {
-      int tempId = Random().nextInt(100000000);
+      var tempId = UniqueKey();
       products.add(Product(title: title, desc: desc, color: noteBlue, id: tempId));
 
     }

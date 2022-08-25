@@ -6,6 +6,8 @@ import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/pages/single_note.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/model.dart';
+
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
 
@@ -16,10 +18,13 @@ class Notes extends StatefulWidget {
 class _NotesState extends State<Notes> {
 
   bool isVisible = false;
-
+  late List<Product> temp;
   @override
   void initState() {
   checkVisibility();
+  setState(() {
+    temp = products;
+  });
   super.initState();
   }
 
@@ -154,7 +159,7 @@ class _NotesState extends State<Notes> {
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(btnBgMain),
-                      padding: EdgeInsets.symmetric(horizontal: 96, vertical: 26),
+                      padding: const EdgeInsets.symmetric(horizontal: 96, vertical: 26),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)
                       )
