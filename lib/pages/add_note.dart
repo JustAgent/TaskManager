@@ -17,13 +17,24 @@ class AddNote extends StatefulWidget {
 
 class _AddNoteState extends State<AddNote> {
 
+  getColor() {
+    return noteColor;
+  }
+
   String title = '';
   String desc = '';
+  int noteColor = noteMain;
+
+  callbackColor(color) {
+    setState(() {
+      noteColor = color;
+    });
+  }
 
   void close() {
     if (title != '') {
       var tempId = UniqueKey();
-      products.add(Product(title: title, desc: desc, color: noteBlue, id: tempId));
+      products.add(Product(title: title, desc: desc, color: noteColor, id: tempId));
       widget.callbackFunc();
       Navigator.pop(context);
     }
@@ -80,9 +91,26 @@ class _AddNoteState extends State<AddNote> {
             ),
           ),
         ),
+        bottomNavigationBar: SafeArea(
+          child: Container(
+            height: 100,
+            decoration: BoxDecoration(
+              color: Color(bgMain),
+              boxShadow: const [BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 2,
+                blurRadius: 8,
+              ),],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(5, (index) => ColorSelector(btnColors[index], callbackColor)),
+            ),
+          ),
+        ),
         backgroundColor: Color(bgMain),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               TextField(
@@ -135,8 +163,41 @@ class _AddNoteState extends State<AddNote> {
     );
   }
 }
-//TODO
-//CLASS = NOTE
-// id title text smth
-// create class
-// add him to list
+
+class ColorSelector extends StatefulWidget {
+  ColorSelector(this.color, this.callback, {Key? key}) : super(key: key);
+  final int color;
+  final Function callback;
+  @override
+  State<ColorSelector> createState() => _ColorSelectorState();
+}
+
+class _ColorSelectorState extends State<ColorSelector> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: ()  {
+        widget.callback(widget.color);
+      },
+      child: Container(
+              width: 50,
+              height: 50,
+              margin: const EdgeInsets.fromLTRB(10, 5, 5, 10),
+              decoration: BoxDecoration(
+                color: Color(widget.color),
+                borderRadius: BorderRadius.circular(16),
+              //   boxShadow: [
+              // BoxShadow(
+              //   offset: Offset(0.0, 3.75),
+              //   color: Color(btnBgMain),
+              //   spreadRadius: 1,
+              //   blurRadius: 10,
+              // )]
+          )
+      ),
+      //color: Colors.red,
+        );
+  }
+}

@@ -11,6 +11,13 @@ int noteYellow = 0xfff7d79e;
 int appBarTextColor = 0XFF403B36;
 int whiteColor = 0xff000000;
 int btnColor = 0xffFFFBFA;
+List<int> btnColors = [
+0xffc2bff5,
+0xffFFFDFA,
+0xfff0b3aa,
+0xffb9f2aa,
+0xfff7d79e
+];
 var btnGradient = <Color>[
   Color(0xff1f005c),
   Color(0xff5b0060),

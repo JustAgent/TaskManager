@@ -14,7 +14,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,
         backgroundColor: Color(bgMain),
@@ -158,12 +158,11 @@ class _SignUpState extends State<SignUp> {
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
   const TextFieldContainer({Key? key, required this.child}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: size.width * 0.8,
       decoration: BoxDecoration(
@@ -175,6 +174,7 @@ class TextFieldContainer extends StatelessWidget {
   }
 }
 //TODO
+//COLOR SELECTOR
 //FIX EYE POSITION ON DIF DEVICES
 //MAKE EYE LOGIC
 //LOGIN AND FIREBASE USAGE
