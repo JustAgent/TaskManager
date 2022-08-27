@@ -91,21 +91,19 @@ class _AddNoteState extends State<AddNote> {
             ),
           ),
         ),
-        bottomNavigationBar: SafeArea(
-          child: Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: Color(bgMain),
-              boxShadow: const [BoxShadow(
-                color: Colors.black12,
-                spreadRadius: 2,
-                blurRadius: 8,
-              ),],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) => ColorSelector(btnColors[index], callbackColor)),
-            ),
+        bottomNavigationBar: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: Color(bgMain),
+            boxShadow: const [BoxShadow(
+              color: Colors.black12,
+              spreadRadius: 2,
+              blurRadius: 8,
+            ),],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(5, (index) => ColorSelector(btnColors[index], callbackColor)),
           ),
         ),
         backgroundColor: Color(bgMain),

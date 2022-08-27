@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -10,6 +11,27 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+
+  Future signIn() async {
+    print(emailController.text.trim());
+    print(passwordController.text.trim());
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +83,7 @@ class _SignUpState extends State<SignUp> {
 
                     TextFieldContainer(
                         child: TextField(
+                          controller: emailController,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Email Address',
@@ -75,6 +98,7 @@ class _SignUpState extends State<SignUp> {
                         child: Stack(
                           children: [
                             TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -111,7 +135,7 @@ class _SignUpState extends State<SignUp> {
                       margin: const EdgeInsets.only(top: 40),
                       child: ElevatedButton(
                         onPressed: () {
-
+                          signIn();
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Color(btnBgMain),
@@ -173,6 +197,7 @@ class TextFieldContainer extends StatelessWidget {
     );
   }
 }
+
 //TODO
 //COLOR SELECTOR
 //FIX EYE POSITION ON DIF DEVICES

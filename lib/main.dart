@@ -1,17 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/pages/add_note.dart';
 import 'package:task_manager/pages/edit_note.dart';
+import 'package:task_manager/pages/landing_page.dart';
 import 'package:task_manager/pages/notes.dart';
 import 'package:task_manager/pages/sign_up_page.dart';
 import 'package:task_manager/pages/single_note.dart';
 
-void main() => runApp(MaterialApp(
-  initialRoute: '/signup',
-  debugShowCheckedModeBanner: false,
-  routes: {
-    '/signup': (context) => SignUp(),
-    '/': (context) =>  Notes(),
-    //'/addNote': (context) =>  AddNote(),
-    //'/editNote': (context) =>  EditNote(1,'213','2132'),
-  },
-));
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MaterialApp(
+    home: LandingPage(),
+  )
+  );
+}
