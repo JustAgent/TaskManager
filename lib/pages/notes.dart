@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:task_manager/model/local_storage.dart';
+import 'package:task_manager/pages/NavBar.dart';
 import 'package:task_manager/pages/add_note.dart';
 import 'package:task_manager/pages/single_note.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +38,7 @@ class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       floatingActionButton: Visibility(
         visible: isVisible,
         child: FloatingActionButton(
@@ -60,6 +62,7 @@ class _NotesState extends State<Notes> {
         ),
       ),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Color(appBarTextColor)),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Color(bgMain),
@@ -71,13 +74,7 @@ class _NotesState extends State<Notes> {
               )
           )
         ],
-        leading: IconButton(
-          icon: Icon(
-            Icons.menu,
-            color: Color(appBarTextColor),
-          ),
-          onPressed: () {  },
-        ),
+
         title: Text(
           'All Notes',
           style: GoogleFonts.nunito(
