@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
+import 'package:task_manager/database/crud.dart';
 import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/model/model.dart';
 import 'package:task_manager/pages/single_note.dart';
@@ -35,6 +36,9 @@ class _AddNoteState extends State<AddNote> {
     if (title != '') {
       var tempId = UniqueKey();
       products.add(Product(title: title, desc: desc, color: noteColor, id: tempId));
+      print('START REQUEST');
+      Request().createNote(title, desc, noteColor, tempId);
+      print('END REQUEST');
       widget.callbackFunc();
       Navigator.pop(context);
     }

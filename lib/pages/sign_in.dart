@@ -4,6 +4,8 @@ import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_manager/pages/reset_page.dart';
 
+import '../model/local_storage.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key, required this.onClickedSignUp}) : super(key: key);
   final VoidCallback onClickedSignUp;
@@ -20,11 +22,16 @@ class _SignInState extends State<SignIn> {
   Future signIn() async {
     print(emailController.text.trim());
     print(passwordController.text.trim());
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      userEmail = emailController.text.trim();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
   @override

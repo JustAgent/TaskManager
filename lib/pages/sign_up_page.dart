@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:task_manager/database/crud.dart';
+import 'package:task_manager/model/local_storage.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key, required this.onClickedSignUp}) : super(key: key);
@@ -19,14 +21,13 @@ class _SignUpState extends State<SignUp> {
 
 
   Future signUp() async {
-    print(emailController.text.trim());
-    print(passwordController.text.trim());
-    print(usernameController.text.trim());
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
           );
+      const Request().createUser(emailController.text.trim(), usernameController.text.trim());
+      userEmail = emailController.text.trim();
     } on FirebaseAuthException catch (e) {
       print(e);
     }
