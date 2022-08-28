@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_manager/model/local_storage.dart';
@@ -5,22 +6,26 @@ import 'package:task_manager/model/model.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class Request extends StatelessWidget {
-  const Request({Key? key}) : super(key: key);
 
-
+  String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
   Future createNote(title, desc, color, id) async {
-    final docNote = FirebaseFirestore.instance.collection('users').doc('1@mail.ru').snapshots().;
-    // final data = {
-    //   'color': color,
-    //   'id': 3,
-    //   'desc': desc,
-    //   'title': title,
-    // };
-    print('START');
-    print(docNote);
-    //await docNote.add(data);
-    print('END');
+    //final docNote = FirebaseFirestore.instance.collection('users').doc('1@mail.ru').snapshots();
+    DocumentReference docNote = FirebaseFirestore.instance.collection('users').doc(userEmail);
+    final data = {
+      'color': color,
+      'id': id.toString(),
+      'desc': desc,
+      'title': title,
+    };
+    await docNote.update(
+      {
+        'products': FieldValue.arrayUnion([
+          data
+        ])
+      }
+    );
+    print(userEmail);
   }
 
   Future createUser(email, username) async {

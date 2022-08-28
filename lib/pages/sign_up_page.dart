@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp> {
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
           );
-      const Request().createUser(emailController.text.trim(), usernameController.text.trim());
+      Request().createUser(emailController.text.trim(), usernameController.text.trim());
       userEmail = emailController.text.trim();
     } on FirebaseAuthException catch (e) {
       print(e);
