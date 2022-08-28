@@ -2,35 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:task_manager/pages/reset_page.dart';
+import 'package:email_validator/email_validator.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key, required this.onClickedSignUp}) : super(key: key);
-  final VoidCallback onClickedSignUp;
+class ResetPage extends StatefulWidget {
+  const ResetPage({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<ResetPage> createState() => _ResetPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _ResetPageState extends State<ResetPage> {
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
 
-  Future signIn() async {
-    print(emailController.text.trim());
-    print(passwordController.text.trim());
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+
+  Future resetPassword() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
+
+
 
   @override
   void dispose() {
     emailController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 
@@ -39,13 +37,11 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(color: Color(appBarTextColor)),
-          //automaticallyImplyLeading: false,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              widget.onClickedSignUp();
-            },
-
+              Navigator.of(context).pop();
+          },
           ),
           centerTitle: true,
           elevation: 0,
@@ -69,7 +65,7 @@ class _SignInState extends State<SignIn> {
                 Container(
                   margin: EdgeInsets.only(top: 30),
                   child: Text(
-                    'Welcome Back!',
+                    'Forgot password?',
                     style: GoogleFonts.nunito(
                       fontWeight: FontWeight.w900,
                       fontSize: 24,
@@ -79,7 +75,7 @@ class _SignInState extends State<SignIn> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(35, 10, 35, 40),
                   child: Text(
-                    'Login to your account to write something. We will keep it a secret.',
+                    'Receive an email to reset your password',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.nunito(
@@ -90,10 +86,14 @@ class _SignInState extends State<SignIn> {
                 ),
                 Column(
                   children: [
-
                     TextFieldContainer(
-                        child: TextField(
+                        child: TextFormField(
                           controller: emailController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (email) =>
+                          email != null && !EmailValidator.validate(email)
+                              ? 'Enter a valid email'
+                              : null,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Email Address',
@@ -104,36 +104,11 @@ class _SignInState extends State<SignIn> {
                           ),
                         )
                     ),
-                    TextFieldContainer(
-                        child: Stack(
-                            children: [
-                              TextField(
-                                controller: passwordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Password',
-                                    hintStyle: GoogleFonts.nunito(
-                                      fontSize: 16,
-                                      fontWeight:  FontWeight.w700,
-                                    )
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(260, 12, 12, 0),
-                                child: const Icon(
-                                  Icons.remove_red_eye,
-                                ),
-                              )
-                            ]
-                        )
-                    ),
-
                     Container(
                       margin: const EdgeInsets.only(top: 40),
                       child: ElevatedButton(
                         onPressed: () {
-                          signIn();
+                          resetPassword();
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Color(btnBgMain),
@@ -143,7 +118,7 @@ class _SignInState extends State<SignIn> {
                             )
                         ),
                         child: Text(
-                            'Log In',
+                            'Send email',
                             style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.w900,
                                 color: Color(btnColor),
@@ -151,23 +126,6 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ResetPage()));
-                        },
-                        child: Text(
-                          'Forgot password?',
-                          style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 16,
-                            color: Color(btnBgMain),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 )
 
@@ -198,3 +156,12 @@ class TextFieldContainer extends StatelessWidget {
     );
   }
 }
+
+//TODO
+//COLOR SELECTOR
+//FIX EYE POSITION ON DIF DEVICES
+//MAKE EYE LOGIC
+//LOGIN AND FIREBASE USAGE
+//CHANGE LOCAL STORAGE TO FIREBASE
+//CELEBRATE
+

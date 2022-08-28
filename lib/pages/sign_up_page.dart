@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:email_validator/email_validator.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key, required this.onClickedSignUp}) : super(key: key);
@@ -14,22 +15,29 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final usernameController = TextEditingController();
 
 
-  Future signIn() async {
+  Future signUp() async {
     print(emailController.text.trim());
     print(passwordController.text.trim());
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-    );
-  }
+    print(usernameController.text.trim());
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+          );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    }
+
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    usernameController.dispose();
     super.dispose();
   }
 
@@ -81,10 +89,28 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Column(
                   children: [
-
                     TextFieldContainer(
                         child: TextField(
+                          controller: usernameController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Username',
+                              hintStyle: GoogleFonts.nunito(
+                                fontSize: 16,
+                                fontWeight:  FontWeight.w700,
+                              )
+                          ),
+                        )
+                    ),
+                    TextFieldContainer(
+                        child: TextFormField(
                           controller: emailController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (email) =>
+                          email != null && !EmailValidator.validate(email)
+                          ? 'Enter a valid email'
+                          : null,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Email Address',
@@ -98,9 +124,14 @@ class _SignUpState extends State<SignUp> {
                     TextFieldContainer(
                         child: Stack(
                           children: [
-                            TextField(
+                            TextFormField(
                             controller: passwordController,
                             obscureText: true,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            validator: (password) =>
+                            password != null && password.length < 6
+                                ? 'Enter min 6 characters'
+                                : null,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Password',
@@ -119,24 +150,12 @@ class _SignUpState extends State<SignUp> {
                           ]
                         )
                     ),
-                    TextFieldContainer(
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Username',
-                              hintStyle: GoogleFonts.nunito(
-                                fontSize: 16,
-                                fontWeight:  FontWeight.w700,
-                              )
-                          ),
-                        )
-                    ),
+
                     Container(
                       margin: const EdgeInsets.only(top: 40),
                       child: ElevatedButton(
                         onPressed: () {
-                          signIn();
+                          signUp();
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Color(btnBgMain),
