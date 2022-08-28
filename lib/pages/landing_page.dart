@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/pages/auth_page.dart';
 import 'package:task_manager/pages/notes.dart';
+import 'package:task_manager/pages/sign_in.dart';
 import 'package:task_manager/pages/sign_up_page.dart';
 
 class LandingPage extends StatefulWidget {
@@ -12,22 +14,18 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  final bool isLogged = false;
 
 
   @override
   Widget build(BuildContext context) {
-    return
-      isLogged ?
-      Notes() :
-        StreamBuilder<User?>(
+    return StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Notes();
             }
             else {
-              return SignUp();
+              return AuthPage();
             }
           },
         );

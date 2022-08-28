@@ -3,15 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key, required this.onClickedSignUp}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key, required this.onClickedSignUp}) : super(key: key);
   final VoidCallback onClickedSignUp;
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -21,8 +21,8 @@ class _SignUpState extends State<SignUp> {
     print(passwordController.text.trim());
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
     );
   }
 
@@ -37,17 +37,18 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //automaticallyImplyLeading: false,
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Color(bgMain),
-        title: Text(
-        'NOTELY',
-        style: GoogleFonts.titanOne(
-          color: Color(appBarTextColor),
-          fontSize: 25,
-        ),
-        )
+          iconTheme: IconThemeData(color: Color(appBarTextColor)),
+          //automaticallyImplyLeading: false,
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Color(bgMain),
+          title: Text(
+            'NOTELY',
+            style: GoogleFonts.titanOne(
+              color: Color(appBarTextColor),
+              fontSize: 25,
+            ),
+          )
       ),
       backgroundColor: Color(bgMain),
       body: SafeArea(
@@ -60,7 +61,7 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   margin: EdgeInsets.only(top: 30),
                   child: Text(
-                    'Create a free account',
+                    'Welcome Back!',
                     style: GoogleFonts.nunito(
                       fontWeight: FontWeight.w900,
                       fontSize: 24,
@@ -70,7 +71,7 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(35, 10, 35, 40),
                   child: Text(
-                    'Join Notely for free. Create and share unlimited notes with your friends.',
+                    'Login to your account to write something. We will keep it a secret.',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.nunito(
@@ -97,41 +98,29 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFieldContainer(
                         child: Stack(
-                          children: [
-                            TextField(
-                            controller: passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Password',
-                              hintStyle: GoogleFonts.nunito(
-                                fontSize: 16,
-                                fontWeight:  FontWeight.w700,
-                              )
-                          ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(260, 12, 12, 0),
-                              child: const Icon(
-                                Icons.remove_red_eye,
+                            children: [
+                              TextField(
+                                controller: passwordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Password',
+                                    hintStyle: GoogleFonts.nunito(
+                                      fontSize: 16,
+                                      fontWeight:  FontWeight.w700,
+                                    )
+                                ),
                               ),
-                            )
-                          ]
-                        )
-                    ),
-                    TextFieldContainer(
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Username',
-                              hintStyle: GoogleFonts.nunito(
-                                fontSize: 16,
-                                fontWeight:  FontWeight.w700,
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(260, 12, 12, 0),
+                                child: const Icon(
+                                  Icons.remove_red_eye,
+                                ),
                               )
-                          ),
+                            ]
                         )
                     ),
+
                     Container(
                       margin: const EdgeInsets.only(top: 40),
                       child: ElevatedButton(
@@ -146,7 +135,7 @@ class _SignUpState extends State<SignUp> {
                             )
                         ),
                         child: Text(
-                            'Create Account',
+                            'Log In',
                             style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.w900,
                                 color: Color(btnColor),
@@ -159,9 +148,9 @@ class _SignUpState extends State<SignUp> {
                       child: TextButton(
                         onPressed: () {
                           widget.onClickedSignUp();
-                          },
+                        },
                         child: Text(
-                          'Already have an account?',
+                          'Forgot password?',
                           style: GoogleFonts.nunito(
                             fontWeight: FontWeight.w800,
                             fontSize: 16,
@@ -193,19 +182,10 @@ class TextFieldContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: size.width * 0.8,
       decoration: BoxDecoration(
-        color: Color(noteMain),
-        borderRadius: BorderRadius.circular(12)
+          color: Color(noteMain),
+          borderRadius: BorderRadius.circular(12)
       ),
       child: child,
     );
   }
 }
-
-//TODO
-//COLOR SELECTOR
-//FIX EYE POSITION ON DIF DEVICES
-//MAKE EYE LOGIC
-//LOGIN AND FIREBASE USAGE
-//CHANGE LOCAL STORAGE TO FIREBASE
-//CELEBRATE
-
