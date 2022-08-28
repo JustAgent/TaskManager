@@ -2,6 +2,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
+import 'package:task_manager/database/crud.dart';
 import 'package:task_manager/model/local_storage.dart';
 import 'package:task_manager/pages/NavBar.dart';
 import 'package:task_manager/pages/add_note.dart';
@@ -12,6 +13,7 @@ import '../model/model.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
+
   @override
   State<Notes> createState() => _NotesState();
 }
@@ -21,8 +23,19 @@ class _NotesState extends State<Notes> {
   bool isVisible = false;
   late int localProducts;
 
+  @override
+  void initState() {
+    Request().setProducts(callback);
+    if (products.isNotEmpty) {
+      isVisible = true;
+    }
+    else {
+      isVisible = false;
+    }
+    super.initState();
+  }
 
-  callback() {
+  void callback() {
     setState(() {
       localProducts = 0;
       if (products.isNotEmpty) {

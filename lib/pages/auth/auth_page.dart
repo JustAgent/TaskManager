@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/pages/sign_in.dart';
-import 'package:task_manager/pages/sign_up_page.dart';
+import 'package:task_manager/pages/auth/sign_in.dart';
+import 'package:task_manager/pages/auth/sign_up_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);

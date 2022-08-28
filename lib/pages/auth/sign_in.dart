@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:task_manager/pages/reset_page.dart';
+import 'package:task_manager/pages/auth/reset_page.dart';
 
-import '../model/local_storage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key, required this.onClickedSignUp}) : super(key: key);
@@ -28,7 +27,6 @@ class _SignInState extends State<SignIn> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      userEmail = emailController.text.trim();
     } on FirebaseAuthException catch (e) {
       print(e);
     }

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/pages/auth_page.dart';
+import 'package:task_manager/database/crud.dart';
+import 'package:task_manager/pages/auth/auth_page.dart';
 import 'package:task_manager/pages/notes.dart';
-import 'package:task_manager/pages/sign_in.dart';
-import 'package:task_manager/pages/sign_up_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);

@@ -34,9 +34,14 @@ class _AddNoteState extends State<AddNote> {
 
   void close() {
     if (title != '') {
-      var tempId = UniqueKey();
-      products.add(Product(title: title, desc: desc, color: noteColor, id: tempId));
+      var tempId = UniqueKey().toString();
+      //products.add(Product(title: title, desc: desc, color: noteColor, id: tempId));
       Request().createNote(title, desc, noteColor, tempId);
+      Request().setProducts(widget.callbackFunc());
+      widget.callbackFunc();
+      Navigator.pop(context);
+    }
+    else {
       widget.callbackFunc();
       Navigator.pop(context);
     }

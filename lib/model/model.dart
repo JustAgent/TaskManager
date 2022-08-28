@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Product {
   String title, desc;
   int color;
-  UniqueKey id;
+  String id;
 
   Product({
     required this.title,

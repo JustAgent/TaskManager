@@ -7,7 +7,7 @@ import 'package:task_manager/pages/edit_note.dart';
 
   Widget note(context, product, index, callback) {
     void deleteNote() {
-      products.removeWhere((element) => element.id == product.id);
+      products.removeWhere((element) => element['id'] == product['id']);
     }
     
     Future<bool> showDeleteDialog() async {
@@ -38,14 +38,13 @@ import 'package:task_manager/pages/edit_note.dart';
     return InkWell(
       onTap: () async {
          Navigator.of(context).push(MaterialPageRoute(builder:
-             (context) => EditNote(index, product.title, product.desc, callback)));
-        // Navigator.pushReplacementNamed(context, '/editNote', arguments: {index, product.title, product.desc} );
+             (context) => EditNote(index, product['title'], product['desc'], callback)));
          },
       onLongPress: () => showDeleteDialog(),
 
         child: Container(
           decoration: BoxDecoration(
-              color: Color(product.color),
+              color: Color(product['color']),
               borderRadius: BorderRadius.circular(9)
           ),
           padding: const EdgeInsets.all(16),
@@ -69,7 +68,7 @@ import 'package:task_manager/pages/edit_note.dart';
                   //       ),
                   //     )
                   // ),
-                  Text(product.title,
+                  Text(product['title'],
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
@@ -81,7 +80,7 @@ import 'package:task_manager/pages/edit_note.dart';
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 42, 0, 0),
                     child: Text(
-                      product.desc,
+                      product['desc'],
                       maxLines: 9,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
